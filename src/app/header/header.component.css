@@ -1,0 +1,87 @@
+/**
+ * Autor: Jabier Zurro Aduriz
+ * Fecha: 31/12/2025
+ * Asignatura: DWEC
+ * Proyecto: TE06 - Portal de gestión de ETT
+ * header.component.css
+ * Estilos específicos del componente HeaderComponent.
+ * Define la disposición y el diseño de la cabecera de navegación.
+ */
+
+/* ===== CONTENEDOR PRINCIPAL DEL HEADER ===== */
+.header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 16px;
+
+    background-color: var(--color-primary);
+}
+
+/* ===== MARCA / LOGO ===== */
+.brand {
+    display: flex;
+    align-items: center;
+    padding: 4px 8px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.brand-logo {
+    height: 36px;
+    width: auto;
+    display: block;
+}
+
+/* ===== NAVEGACIÓN PRINCIPAL ===== */
+.nav {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+/* Estado hover de los enlaces */
+.nav a:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Enlace activo según la ruta actual */
+.nav a.active {
+    background-color: rgba(255, 255, 255, 0.20);
+}
+
+/* ===== ZONA DE AUTENTICACIÓN ===== */
+.auth {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ===== BOTONES ===== */
+.btn {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+/* Botón secundario (login / logout) */
+.btn-secondary {
+    background-color: white;
+    color: var(--color-primary);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+}

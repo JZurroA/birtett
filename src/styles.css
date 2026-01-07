@@ -1,0 +1,41 @@
+/**
+ * Autor: Jabier Zurro Aduriz
+ * Fecha: 31/12/2025
+ * Asignatura: DWEC
+ * Proyecto: TE06 - Portal de gestión de ETT
+ * styles.css
+ * Estilos globales para la aplicación.
+ */
+
+@import 'normalize.css';
+
+:root {
+    --color-primary: #0099c2;      /* azul principal del logo */
+    --color-secondary: #7fc6de;    /* azul medio */
+    --color-accent: #c6e3f1;       /* azul muy claro */
+
+    /* Fondos */
+    --color-bg: #f4f7f9;           /* gris muy claro */
+    --color-surface: #ffffff;      /* blanco */
+
+    /* Texto */
+    --color-text: #000000;         /* negro */
+    --color-text-muted: #555555;   /* gris medio */
+
+    /* Footer */
+    --color-footer: #e6f1f6;       /* gris azulado claro */
+    --color-footer-text: #000000;
+}
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: sans-serif;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+}

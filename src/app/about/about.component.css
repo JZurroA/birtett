@@ -1,0 +1,118 @@
+/**
+ * Autor: Jabier Zurro Aduriz
+ * Fecha: 31/12/2025
+ * Asignatura: DWEC
+ * Proyecto: TE06 - Portal de gestión de ETT
+ * about.component.css
+ * Estilos específicos del componente AboutComponent.
+ * Define la estructura y el diseño visual de la página “About”.
+ */
+
+/* ===== ESTRUCTURA GENERAL DE LA PÁGINA ===== */
+.page.about {
+  max-width: 1100px;
+  margin: 24px auto 40px;
+  padding: 0 12px;
+
+  display: grid;
+  gap: 18px;
+}
+
+/* Título principal */
+.page.about > h1 {
+  margin: 8px 0 10px;
+  font-size: 2rem;
+  letter-spacing: 0.2px;
+}
+
+/* ===== BLOQUE WELCOME (reutilizado de Inicio y Servicios) ===== */
+.welcome {
+  background: linear-gradient(180deg, var(--color-accent), #ffffff);
+  border: 1px solid var(--color-accent);
+  border-radius: 14px;
+  padding: 18px 22px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+
+.welcome h2 {
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+}
+
+/* Barra decorativa */
+.welcome__bar {
+  height: 5px;
+  border-radius: 999px;
+  background: var(--color-secondary);
+  margin: 0 0 14px;
+}
+
+/* Texto introductorio */
+.welcome .lead {
+  margin: 0;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+/* ===== /WELCOME ===== */
+
+/* ===== HERO ===== */
+.hero {
+  margin: 0;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--color-accent);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  background: var(--color-surface);
+}
+
+.hero img {
+  display: block;
+  width: 100%;
+  height: 380px; /* Altura algo menor que en Inicio */
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ===== CONTENEDOR DE TARJETAS ===== */
+.about-grid {
+  background: var(--color-surface);
+  border: 1px solid var(--color-accent);
+  border-radius: 14px;
+  padding: 22px 26px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+/* ===== TARJETAS ===== */
+.card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-accent);
+  border-radius: 12px;
+  padding: 16px 18px;
+  box-shadow: none;
+}
+
+.card h2 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.card p {
+  margin: 0;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.card ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.card li {
+  margin: 6px 0;
+}

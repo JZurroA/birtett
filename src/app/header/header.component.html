@@ -1,0 +1,73 @@
+<!--
+    Autor: Jabier Zurro Aduriz
+    Fecha: 31/12/2025
+    Asignatura: DWEC
+    Proyecto: TE06 - Portal de gestión de ETT
+    header.component.html
+    Plantilla del componente HeaderComponent.
+    Muestra la cabecera de la aplicación y controla la navegación según autenticación.
+-->
+
+<header class="header">
+
+    <!-- Marca / logo de la aplicación -->
+    <div
+        class="brand"
+        routerLink="/inicio"
+        role="link"
+        tabindex="0"
+    >
+        <img
+            class="brand-logo"
+            src="img/birt.png"
+            alt="Birt ETT"
+        >
+    </div>
+
+    <!-- Navegación principal -->
+    <nav class="nav">
+        <a routerLink="/inicio" routerLinkActive="active">Inicio</a>
+        <a routerLink="/servicios" routerLinkActive="active">Servicios</a>
+        <a routerLink="/about" routerLinkActive="active">About</a>
+
+        <!-- Enlaces visibles solo para usuarios autenticados -->
+        <a
+            *ngIf="authService.isLoggedIn()"
+            routerLink="/trabajadores"
+            routerLinkActive="active"
+        >
+            Trabajadores
+        </a>
+
+        <a
+            *ngIf="authService.isLoggedIn()"
+            routerLink="/administrar"
+            routerLinkActive="active"
+        >
+            Administrar
+        </a>
+    </nav>
+
+    <!-- Zona de autenticación -->
+    <aside class="auth">
+
+        <!-- Enlace de login visible solo si no hay sesión iniciada -->
+        <a
+            *ngIf="!authService.isLoggedIn()"
+            routerLink="/login"
+            class="btn btn-secondary"
+        >
+            Login
+        </a>
+
+        <!-- Botón de logout visible solo si hay sesión iniciada -->
+        <button
+            *ngIf="authService.isLoggedIn()"
+            (click)="authService.logout()"
+            class="btn btn-secondary"
+        >
+            Logout
+        </button>
+    </aside>
+
+</header>

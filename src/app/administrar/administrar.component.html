@@ -1,0 +1,192 @@
+<!--
+  Autor: Jabier Zurro Aduriz
+  Fecha: 31/12/2025
+  Asignatura: DWEC
+  Proyecto: TE06 - Portal de gestión de ETT
+  administrar.component.html
+  Plantilla del componente AdministrarComponent.
+  Incluye dos modos de funcionamiento:
+  - Modo panel (/administrar): creación de trabajadores.
+  - Modo detalle (/administrar/:id): consulta, edición y eliminación (mock) de un trabajador.
+-->
+
+<section class="admin">
+    <h2>Administrar</h2>
+
+    <!-- =====================================================
+         MODO PANEL (sin id): /administrar
+         Permite crear un nuevo trabajador.
+         ===================================================== -->
+    <div *ngIf="!loading && !selectedId" class="admin-panel">
+        <p class="muted">
+            Panel de administración. Puedes crear un nuevo trabajador o seleccionar uno desde “Trabajadores”.
+        </p>
+
+        <h3>Crear trabajador</h3>
+
+        <!-- Formulario de creación (template-driven forms) -->
+        <form (ngSubmit)="create()" #createForm="ngForm" class="form">
+            <label>
+                Nombre
+                <input
+                    type="text"
+                    name="first_name"
+                    [(ngModel)]="createData.first_name"
+                    required
+                />
+            </label>
+
+            <label>
+                Apellido
+                <input
+                    type="text"
+                    name="last_name"
+                    [(ngModel)]="createData.last_name"
+                    required
+                />
+            </label>
+
+            <label>
+                Email
+                <input
+                    type="email"
+                    name="email"
+                    [(ngModel)]="createData.email"
+                    required
+                />
+            </label>
+
+            <button class="btn" type="submit">Crear</button>
+        </form>
+
+        <!-- Mensajes de feedback -->
+        <p class="ok" *ngIf="successMessage">{{ successMessage }}</p>
+        <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+    </div>
+
+    <!-- =====================================================
+         MODO DETALLE (con id): /administrar/:id
+         Permite consultar, editar y eliminar un trabajador.
+         ===================================================== -->
+    <div *ngIf="selectedId !== null">
+
+        <!-- Estado de carga -->
+        <p *ngIf="loading">Cargando...</p>
+
+        <!-- Error de carga -->
+        <p class="error" *ngIf="!loading && errorMessage">
+            {{ errorMessage }}
+        </p>
+
+        <!-- Tarjeta del trabajador (solo si ya hay datos) -->
+        <article
+            class="card"
+            *ngIf="!loading && user"
+            [ngClass]="{
+                'status-process': estadoSeleccionado === 'En proceso',
+                'status-hired': estadoSeleccionado === 'Contratado',
+                'status-fired': estadoSeleccionado === 'Despedido'
+            }"
+        >
+
+            <!-- Avatar del trabajador -->
+            <img
+                class="avatar"
+                [src]="user.avatar"
+                alt="{{ user.first_name }} {{ user.last_name }}"
+            />
+
+            <div class="info">
+                <!-- Datos principales -->
+                <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+                <p>{{ user.email }}</p>
+
+                <!-- Estado del trabajador -->
+                <p class="status">
+                    Estado:
+                    <span class="badge">{{ estadoSeleccionado }}</span>
+                </p>
+
+                <!-- Acciones principales (solo cuando NO se edita) -->
+                <div class="actions" *ngIf="!editMode">
+                    <button class="btn" type="button" (click)="startEdit()">
+                        Modificar
+                    </button>
+                    <button class="btn danger" type="button" (click)="remove()">
+                        Eliminar
+                    </button>
+                </div>
+
+                <!-- Separador visual cuando se activa el modo edición -->
+                <hr class="separator" *ngIf="editMode" />
+
+                <!-- Formulario de edición (solo si editMode = true) -->
+                <form
+                    *ngIf="editMode"
+                    (ngSubmit)="update()"
+                    #editForm="ngForm"
+                    class="form"
+                >
+                    <h3>Editar trabajador</h3>
+
+                    <!-- ID solo lectura -->
+                    <label>
+                        ID
+                        <input type="text" [value]="user.id" disabled />
+                    </label>
+
+                    <label>
+                        Nombre
+                        <input
+                            type="text"
+                            name="edit_first_name"
+                            [(ngModel)]="createData.first_name"
+                            required
+                        />
+                    </label>
+
+                    <label>
+                        Apellido
+                        <input
+                            type="text"
+                            name="edit_last_name"
+                            [(ngModel)]="createData.last_name"
+                            required
+                        />
+                    </label>
+
+                    <label>
+                        Email
+                        <input
+                            type="email"
+                            name="edit_email"
+                            [(ngModel)]="createData.email"
+                            required
+                        />
+                    </label>
+
+                    <!-- Selector de estado -->
+                    <label>
+                        Cambiar estado
+                        <select [(ngModel)]="estadoEdit" name="estado">
+                            <option *ngFor="let e of estados" [value]="e">
+                                {{ e }}
+                            </option>
+                        </select>
+                    </label>
+
+                    <!-- Acciones del formulario -->
+                    <div class="actions">
+                        <button class="btn" type="submit">Guardar cambios</button>
+                        <button class="btn" type="button" (click)="cancelEdit()">Cancelar</button>
+                    </div>
+                </form>
+
+                <!-- Mensajes de feedback -->
+                <p class="ok" *ngIf="successMessage">{{ successMessage }}</p>
+                <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+            </div>
+        </article>
+    </div>
+</section>

@@ -1,0 +1,66 @@
+<!--
+    Autor: Jabier Zurro Aduriz
+    Fecha: 31/12/2025
+    Asignatura: DWEC
+    Proyecto: TE06 - Portal de gestión de ETT
+    trabajadores.component.html
+    Plantilla del componente TrabajadoresComponent.
+    Muestra el listado de trabajadores y gestiona los distintos estados de carga.
+-->
+
+<section class="trabajadores">
+
+    <!-- Cabecera del listado -->
+    <article>
+        <h1>Trabajadores</h1>
+
+        <!-- Mensaje mostrado mientras se cargan los datos -->
+        <p *ngIf="loading">
+            Cargando trabajadores...
+        </p>
+
+        <!-- Mensaje cuando no hay trabajadores disponibles -->
+        <p *ngIf="!loading && trabajadores.length === 0">
+            No hay trabajadores disponibles.
+        </p>
+    </article>
+
+    <!--
+        Contenedor en formato grid.
+        Se muestra solo cuando los datos han sido cargados
+        y existen trabajadores en el listado.
+    -->
+    <div class="grid" *ngIf="!loading && trabajadores.length > 0">
+
+        <!-- Tarjeta individual por cada trabajador -->
+        <article class="card" *ngFor="let t of trabajadores">
+
+            <!-- Avatar del trabajador -->
+            <img
+                class="avatar"
+                [src]="t.avatar"
+                alt="{{ t.first_name }} {{ t.last_name }}"
+            />
+
+            <!-- Información del trabajador -->
+            <div class="info">
+                <h3 class="name">
+                    {{ t.first_name }} {{ t.last_name }}
+                </h3>
+
+                <p class="email">
+                    {{ t.email }}
+                </p>
+
+                <!-- Enlace a la vista de administración del trabajador -->
+                <a
+                    class="btn"
+                    [routerLink]="['/administrar', t.id]"
+                >
+                    Administrar
+                </a>
+            </div>
+
+        </article>
+    </div>
+</section>

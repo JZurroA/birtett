@@ -1,0 +1,59 @@
+<!--
+    Autor: Jabier Zurro Aduriz
+    Fecha: 31/12/2025
+    Asignatura: DWEC
+    Proyecto: TE06 - Portal de gestión de ETT
+    login.component.html
+    Plantilla del componente LoginComponent.
+    Permite al usuario autenticarse en el portal de administración.
+-->
+
+<section class="login">
+
+    <!-- Título del formulario de acceso -->
+    <h2>Acceso</h2>
+
+    <!-- Texto informativo -->
+    <p class="muted">
+        Portal de administración (solo personal autorizado)
+    </p>
+
+    <!--
+        Formulario de inicio de sesión.
+        Utiliza template-driven forms (ngForm).
+    -->
+    <form (ngSubmit)="onSubmit()" #form="ngForm">
+
+        <!-- Campo usuario -->
+        <label>
+            Usuario
+            <input
+                type="text"
+                name="username"
+                [(ngModel)]="loginData.username"
+                required
+            />
+        </label>
+
+        <!-- Campo contraseña -->
+        <label>
+            Contraseña
+            <input
+                type="password"
+                name="password"
+                [(ngModel)]="loginData.password"
+                required
+            />
+        </label>
+
+        <!-- Mensaje de error -->
+        <p class="error" *ngIf="errorMessage">
+            {{ errorMessage }}
+        </p>
+
+        <!-- Botón de envío del formulario -->
+        <button class="btn btn-primary" type="submit">
+            Iniciar sesión
+        </button>
+    </form>
+</section>
